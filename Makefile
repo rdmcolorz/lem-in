@@ -6,7 +6,7 @@
 #    By: tyang <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/13 16:07:38 by tyang             #+#    #+#              #
-#    Updated: 2018/03/11 18:13:15 by tyang            ###   ########.fr        #
+#    Updated: 2018/03/11 18:33:41 by tyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ FLAGS = -Wall -Wextra -Werror
 
 SOURCE = main.c \
 			error_msg.c \
+			parse_file.c \
 		
 OBJ = $(SOURCE:.c=.o)
 

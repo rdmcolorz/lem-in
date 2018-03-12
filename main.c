@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/11 18:08:36 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/11 19:02:35 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int		main(int ac, char **av)
 {
-	if (ac == 2 && av != NULL)
+	//t_game	game;
+
+	if (ac == 2)
 	{
-		ft_putendl("first");
+		if (parse_file(av[1]) < 0)
+			return (0);
 	}
 	else
 		return (error_msg("usage: ./lem-in target file"));
