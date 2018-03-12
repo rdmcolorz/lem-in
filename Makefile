@@ -6,7 +6,7 @@
 #    By: tyang <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/13 16:07:38 by tyang             #+#    #+#              #
-#    Updated: 2018/03/11 19:51:45 by tyang            ###   ########.fr        #
+#    Updated: 2018/03/11 23:37:13 by tyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,14 @@ SOURCE = main.c \
 			error_msg.c \
 			file.c \
 			game.c \
+			debug.c \
 		
 OBJ = $(SOURCE:.c=.o)
 
 all: $(NAME)
 
 $(NAME):
-	#@echo "Compiling Libft";\
+	@#@echo "Compiling Libft";\
 	@$(MAKE) re -C libft \
 	@$(MAKE) clean -C libft \
 	@echo "Cleaned object files";\

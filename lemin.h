@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/11 20:01:51 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/11 23:37:10 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 typedef struct	s_game
 {
 	int			ants;
+	int			nb_starts;
+	int			nb_ends;
 	char		**start;
 	char		**end;
 }				t_game;
@@ -33,6 +35,7 @@ typedef struct	s_game
 
 char			*read_file(char *file);
 int				parse_file(char *file, t_game *game);
+char			**add_to_array(char **arr, char *str);
 
 /*
 **	error_msg.c
@@ -46,4 +49,9 @@ void			*error_msg_void(char *msg);
 */
 
 t_game			*init_game();
+
+/*
+**	debug.c
+*/
+int				print_game(t_game *game);
 #endif
