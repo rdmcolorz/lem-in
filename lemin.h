@@ -6,12 +6,12 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/11 23:37:10 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/12 10:57:10 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef LEMIN_H
-#define LEMIN_H
+# define LEMIN_H
 # define BUFF_SIZE 4096
 #include <stdlib.h>
 #include <fcntl.h>
@@ -35,7 +35,9 @@ typedef struct	s_game
 
 char			*read_file(char *file);
 int				parse_file(char *file, t_game *game);
-char			**add_to_array(char **arr, char *str);
+void			number_of_start_end(char **arr, t_game *game);
+int				get_room(char *str, t_game *game);
+int				get_array_len(char **arr);
 
 /*
 **	error_msg.c
