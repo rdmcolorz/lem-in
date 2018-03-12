@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/12 11:04:13 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/12 11:39:36 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*read_file(char *file)
 	return (content);
 }
 
-/*	
+/*
 **	gets content char array from read_file.
 **	splits it into string array seperated by '\n'
 **	if content is invalid, return 0
@@ -65,47 +65,39 @@ int		parse_file(char *file, t_game *game)
 	if (ft_atoi(lines[0]) == 0)
 		return (error_msg("ERROR---no ants, or invalid input"));
 	game->ants = ft_atoi(lines[0]);
-	i = 1;
+	i = 0;
 	j = 0;
-	while (lines[i])
-	{
+	while (lines[++i])
 		if (!ft_strcmp(lines[i], "##start") || !ft_strcmp(lines[i], "##end"))
-		{
-			i++;
-			if (lines[i][0] == 'L' || lines[i][0] == '#')
+			if (lines[i + 1][0] == 'L' || lines[i + 1][0] == '#')
 				return (error_msg("ERR0R---'L' as room name"));
-		}
-		i++;
-	}
 	number_of_start_end(lines, game);
 	print_game(game);
 	return (0);
 }
 
-/*	
+/*
 **	counts the number of start rooms and end rooms
 **	so malloc only needs to run once for the whole array.
 */
 
 void	number_of_start_end(char **arr, t_game *game)
 {
-	int i;
-	int	count;
+	int		i;
+	int		count;
 
 	i = 0;
 	count = 0;
 	while (arr[i])
 	{
 		if (!ft_strcmp(arr[i], "##start"))
-		{
-			ft_putendl("start plus one");
 			game->nb_starts += 1;
-		}
 		else if (!ft_strcmp(arr[i], "##end"))
 			game->nb_ends += 1;
 		i++;
 	}
 }
+
 /*
 	game->start = (char**)ft_memalloc(sizeof(char*) * game->nb_starts);
 	game->end = (char**)ft_memalloc(sizeof(char*) * game->nb_starts);
