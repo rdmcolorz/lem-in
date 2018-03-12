@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_msg.c                                        :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/11 17:38:35 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/11 19:40:49 by tyang            ###   ########.fr       */
+/*   Created: 2018/03/11 19:50:18 by tyang             #+#    #+#             */
+/*   Updated: 2018/03/11 20:13:30 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		error_msg(char *msg)
+t_game	*init_game()
 {
-	ft_putendl_fd(msg, 2);
-	return (0);
-}
+	t_game *game;
 
-void	*error_msg_void(char *msg)
-{
-	ft_putendl_fd(msg, 2);
-	return (NULL);
+	game = (t_game*)ft_memalloc(sizeof(t_game));
+	game->ants = 0;
+	game->start = NULL;
+	game->end = NULL;
+	return (game);
 }

@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/11 19:02:35 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/11 20:12:14 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int		main(int ac, char **av)
 {
-	//t_game	game;
+	t_game	*game;
 
 	if (ac == 2)
 	{
-		if (parse_file(av[1]) < 0)
+		game = init_game();
+		if (parse_file(av[1], game) < 0)
 			return (0);
 	}
 	else

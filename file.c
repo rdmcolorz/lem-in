@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/11 19:15:17 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/11 20:14:20 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*read_file(char *file)
 	ret = 0;
 	content = NULL;
 	if ((fd = open(file, O_RDONLY)) < 0)
-		return (error_msg("Cannot open file"));
+		return (error_msg_void("Cannot open file"));
 	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[ret] = '\0';
@@ -37,14 +37,18 @@ char	*read_file(char *file)
 		}
 	}
 	if (content == NULL)
-		return (error_msg("Empty file"));
+		return (error_msg_void("Empty file"));
 	return (content);
 }
 
-int		parse_file(char *file)
+int		parse_file(char *file, t_game *game)
 {
 	char	*content;
+	char	**lines;
 
 	if ((content = read_file(file)) == NULL)
 		return (0);
+	lines = ft_strsplit(content, '\n');
+	game->ants = 0;
+	return (0);
 }
