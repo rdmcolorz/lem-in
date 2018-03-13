@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/12 10:57:10 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/12 21:17:33 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ typedef struct	s_game
 	char		**start;
 	char		**end;
 }				t_game;
+
+typedef struct	s_room
+{
+	char		*name;
+	char		**links;
+}				t_room;
 
 /*
 **	file.c
