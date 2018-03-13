@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstfree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/13 10:57:27 by tyang            ###   ########.fr       */
+/*   Created: 2018/03/13 10:08:52 by tyang             #+#    #+#             */
+/*   Updated: 2018/03/13 10:22:38 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+void	ft_lstfree(t_list **head)
 {
-	t_game	*game;
+	t_list	*curr;
+	t_list	*next;
 
-	if (ac != 2)
-		return (error_msg("usage: ./lem-in target_file"));
-	game = init_game();
-	if (parse_file(av[1], game) == 0)
-		return (0);
+	if (!*head)
+		return ;
+	curr = *head;
+	while (curr != NULL)
+	{
+		next = curr->next;
+		free(curr);
+		curr = next;
+	}
+	*head = NULL;
+	return ;
 }

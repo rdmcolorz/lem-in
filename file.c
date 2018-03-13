@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/12 22:10:51 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/13 11:30:29 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,15 @@ int		parse_file(char *file, t_game *game)
 	if ((content = read_file(file)) == NULL)
 		return (0);
 	lines = ft_strsplit(content, '\n');
-	if (ft_atoi(lines[0]) == 0)
+	if ((game->ants = ft_atoi(lines[0])) == 0)
 		return (error_msg("ERROR---no ants, or invalid input"));
-	game->ants = ft_atoi(lines[0]);
 	i = 0;
 	j = 0;
 	number_of_start_end(lines, game);
-	game->
 	while (lines[++i])
 		if (!ft_strcmp(lines[i], "##start") || !ft_strcmp(lines[i], "##end"))
 			if (lines[i + 1][0] == 'L' || lines[i + 1][0] == '#')
-				return (error_msg("ERR0R---'L' as room name"));
+				return (error_msg("ERROR---'L' as room name"));
 			
 	print_game(game);
 	return (0);
@@ -100,20 +98,22 @@ void	number_of_start_end(char **arr, t_game *game)
 	}
 }
 
+
 /*
 	game->start = (char**)ft_memalloc(sizeof(char*) * game->nb_starts);
 	game->end = (char**)ft_memalloc(sizeof(char*) * game->nb_starts);
 */
 
 /*
-**	gets room values into game struct, such as name, x cord, y cord,
+**	gets room values into room struct, such as name, x cord, y cord,
 **	return 0 if invalid.
 */
 
-int		get_room(char *str, t_game *game)
+t_room	*get_room(char *str, int flag)
 {
 	int		i;
 	char	**room_arr;
+	t_room	*room;
 
 	room_arr = ft_strsplit(str, ' ');
 	i = -1;
@@ -128,8 +128,8 @@ int		get_room(char *str, t_game *game)
 	while (room_arr[2][++i])
 		if (!ft_isdigit(room_arr[2][i]))
 			return (0);
-	game->ants = 0;
-	return (1);
+	room = init_new_room(room_arr, flag);
+	return (room);
 }
 
 int		get_array_len(char **arr)

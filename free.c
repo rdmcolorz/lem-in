@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/13 10:57:27 by tyang            ###   ########.fr       */
+/*   Created: 2018/03/13 10:04:38 by tyang             #+#    #+#             */
+/*   Updated: 2018/03/13 10:38:57 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		main(int ac, char **av)
+void	free_game(t_game *game)
 {
-	t_game	*game;
+	ft_lstfree(game->start);
+	ft_lstfree(game->end);
+	free(game);
+}
 
-	if (ac != 2)
-		return (error_msg("usage: ./lem-in target_file"));
-	game = init_game();
-	if (parse_file(av[1], game) == 0)
-		return (0);
+void	free_room(t_room *room)
+{
+	ft_lstfree(room->links);
+	free(room->name);
+	free(room);
 }

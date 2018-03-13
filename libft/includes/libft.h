@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 22:17:23 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/11 17:19:52 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/13 10:18:28 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void				ft_lstprint(t_list *lst);
 void				ft_lstdelkey(t_list **alst, void *key);
 void				ft_lstrev(t_list **alst);
 int					ft_lstcount(t_list *list);
+void				ft_lstfree(t_list **head);
 /*
 **EXTRA FUNCTIONS
 */

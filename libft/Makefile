@@ -6,7 +6,7 @@
 #    By: tyang <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/02 10:37:32 by tyang             #+#    #+#              #
-#    Updated: 2018/03/11 17:26:45 by tyang            ###   ########.fr        #
+#    Updated: 2018/03/13 10:23:08 by tyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SOURCE 	= ft_memset.c \
 			ft_lstdelkey.c \
 			ft_lstrev.c \
 			ft_lstcount.c \
+			ft_lstfree.c \
 			\
 			ft_isblanks.c \
 			ft_strrev.c \
@@ -94,6 +95,7 @@ $(NAME):
 	@gcc $(CFLAGS) -Iincludes/ -c $(SOURCE)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
+	@rm -f $(OBJ)
 
 clean:
 	@rm -f $(OBJ)
