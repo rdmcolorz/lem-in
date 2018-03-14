@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/13 23:26:07 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/14 10:02:52 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef struct	s_room
 **	file.c
 */
 
-char			*read_file(char *file);
-int				parse_file(char *file, t_game *game);
+char			*read_stdin();
+int				parse_file(t_game *game);
 int				parse_line(char *line);
 int				parse_room(char **room_data);
 void			number_of_start_end(char **arr, t_game *game);

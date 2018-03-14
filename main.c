@@ -6,21 +6,21 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/13 23:26:05 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/14 09:42:41 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		main(int ac, char **av)
+int		main()
 {
 	t_game	*game;
 
-	if (ac != 2)
-		return (error_msg("usage: ./lem-in target_file"));
+	//if (ac != 2)
+	//	return (error_msg("usage: ./lem-in target_file"));
 	game = init_game();
-	if (parse_file(av[1], game) == 0)
+	if (parse_file(game) == 0)
 		return (0);
-	while(1)
-		;
+	//while(1)
+	//	;
 }

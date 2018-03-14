@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/13 23:25:59 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/14 10:03:13 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,16 @@
 **	returns content as char array.
 */
 
-char	*read_file(char *file)
+char	*read_stdin()
 {
 	char	*content;
 	char	buff[BUFF_SIZE + 1];
 	char	*del;
-	int		fd;
 	int		ret;
 
 	ret = 0;
 	content = NULL;
-	if ((fd = open(file, O_RDONLY)) < 0)
-		return (error_msg_void("ERROR---invalid file"));
-	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
+	while ((ret = read(0, buff, BUFF_SIZE)) > 0)
 	{
 		buff[ret] = '\0';
 		if (content == NULL)
@@ -52,13 +49,13 @@ char	*read_file(char *file)
 **	if content is invalid, return 0
 */
 
-int		parse_file(char *file, t_game *game)
+int		parse_file(t_game *game)
 {
 	char	*content;
 	char	**lines;
 	int		i;
 
-	if ((content = read_file(file)) == NULL)
+	if ((content = read_stdin()) == NULL)
 		return (0);
 	if (is_space_between_lines(content))
 		return (error_msg("ERROR---empty space between lines"));
