@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 19:50:18 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/13 11:36:11 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/13 20:34:03 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_game	*init_game()
 	game->ants = 0;
 	game->nb_starts = 0;
 	game->nb_ends = 0;
+	game->nb_rooms = 0;
 	game->starts = NULL;
 	game->ends = NULL;
 	return (game);
@@ -28,7 +29,7 @@ t_game	*init_game()
 t_room	*init_new_room(char **arr, int flag)
 {
 	t_room	*room;
-	
+
 	room = (t_room*)ft_memalloc(sizeof(t_room));
 	room->x = ft_atoi(arr[1]);
 	room->y = ft_atoi(arr[2]);

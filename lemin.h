@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/13 11:30:09 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/13 21:39:40 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct	s_game
 	int			ants;
 	int			nb_starts;
 	int			nb_ends;
+	int			nb_rooms;
 	t_list		*starts;
 	t_list		*ends;
 }				t_game;
@@ -45,9 +46,12 @@ typedef struct	s_room
 
 char			*read_file(char *file);
 int				parse_file(char *file, t_game *game);
+int				parse_line(char **curr);
+int				parse_room(char **room_data);
 void			number_of_start_end(char **arr, t_game *game);
 t_room			*get_room(char *str, int flag);
 int				get_array_len(char **arr);
+int				is_space_between_lines(char *content);
 
 /*
 **	error_msg.c
@@ -62,6 +66,15 @@ void			*error_msg_void(char *msg);
 
 t_game			*init_game();
 t_room			*init_new_room(char **arr, int flag);
+
+/*
+**	free.c
+*/
+
+void			free_game(t_game *game);
+void			free_room(t_room *room);
+int				free_2d_array(char **arr);
+int				free_2_2d_array(char **arr, char **arr2);
 
 /*
 **	debug.c

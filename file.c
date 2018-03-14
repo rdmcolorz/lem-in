@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/13 11:30:29 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/13 21:50:42 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*read_file(char *file)
 	ret = 0;
 	content = NULL;
 	if ((fd = open(file, O_RDONLY)) < 0)
-		return (error_msg_void("ERROR---Cannot open file"));
+		return (error_msg_void("ERROR---invalid file"));
 	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[ret] = '\0';
@@ -56,24 +56,93 @@ int		parse_file(char *file, t_game *game)
 {
 	char	*content;
 	char	**lines;
+	char	**curr;
 	int		i;
-	int		j;
 
 	if ((content = read_file(file)) == NULL)
 		return (0);
+	if (is_space_between_lines(content))
+		return (error_msg("ERROR---empty space between lines"));
 	lines = ft_strsplit(content, '\n');
 	if ((game->ants = ft_atoi(lines[0])) == 0)
+	{
+		free_2d_array(lines);
 		return (error_msg("ERROR---no ants, or invalid input"));
+	}
 	i = 0;
-	j = 0;
-	number_of_start_end(lines, game);
 	while (lines[++i])
-		if (!ft_strcmp(lines[i], "##start") || !ft_strcmp(lines[i], "##end"))
-			if (lines[i + 1][0] == 'L' || lines[i + 1][0] == '#')
-				return (error_msg("ERROR---'L' as room name"));
-			
-	print_game(game);
+	{
+		curr = ft_strsplit(lines[i], ' ');
+		if (!parse_line(curr))
+			return (free_2_2d_array(lines, curr));
+		free_2d_array(curr);
+	}
+	return (1);
+}
+
+int		is_space_between_lines(char *content)
+{
+	int	i;
+
+	i = -1;
+	while (content[++i])
+		if (content[i] == '\n')
+			if (content[i + 1] == '\n')
+				return (1);
 	return (0);
+}
+
+int		parse_line(char **curr)
+{
+	int i;
+	int	arr_len;
+	//int	room_count;
+
+	i = -1;
+	arr_len = get_array_len(curr);
+	if (arr_len == 1)
+		if (curr[0][0] != '#')
+			if (!ft_strchr(curr[0], '-'))
+				return (error_msg("ERROR---invalid comment"));
+	if (arr_len == 3)
+		if (!parse_room(curr))
+			return (0);
+	if (arr_len != 1 && arr_len != 3)
+		return (error_msg("ERROR---invlaid format"));
+	return (1);
+}
+
+/*
+**	read in room_data string array
+**	return 0 if invalid
+*/
+
+int		parse_room(char **room_data)
+{
+	int i;
+	int j;
+
+	i = 1;
+	j = 0;
+	if (room_data[0][0] == 'L')
+	{
+		free_2d_array(room_data);
+		return (error_msg("ERROR---'L' as room name"));
+	}
+	while (room_data[i])
+	{
+		while (room_data[i][j])
+		{
+			if (!ft_isdigit(room_data[i][j]))
+			{
+				free_2d_array(room_data);
+				return (error_msg("ERROR---cordinates not a number"));
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
 /*
@@ -81,7 +150,7 @@ int		parse_file(char *file, t_game *game)
 **	so malloc only needs to run once for the whole array.
 */
 
-void	number_of_start_end(char **arr, t_game *game)
+void	make_map(char **arr, t_game *game)
 {
 	int		i;
 	int		count;
@@ -97,7 +166,6 @@ void	number_of_start_end(char **arr, t_game *game)
 		i++;
 	}
 }
-
 
 /*
 	game->start = (char**)ft_memalloc(sizeof(char*) * game->nb_starts);
