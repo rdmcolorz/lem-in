@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/13 21:50:42 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/13 22:50:51 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int		parse_file(char *file, t_game *game)
 {
 	char	*content;
 	char	**lines;
-	char	**curr;
 	int		i;
 
 	if ((content = read_file(file)) == NULL)
@@ -71,12 +70,10 @@ int		parse_file(char *file, t_game *game)
 	}
 	i = 0;
 	while (lines[++i])
-	{
-		curr = ft_strsplit(lines[i], ' ');
-		if (!parse_line(curr))
-			return (free_2_2d_array(lines, curr));
-		free_2d_array(curr);
-	}
+		if (!parse_line(lines[i]))
+			return (free_2d_array(lines));
+	free_2d_array(lines);
+	free(content);
 	return (1);
 }
 
@@ -92,23 +89,25 @@ int		is_space_between_lines(char *content)
 	return (0);
 }
 
-int		parse_line(char **curr)
+int		parse_line(char *line)
 {
-	int i;
-	int	arr_len;
-	//int	room_count;
+	int		i;
+	int		arr_len;
+	char	**curr;
 
 	i = -1;
+	curr = ft_strsplit(line, ' ');
 	arr_len = get_array_len(curr);
 	if (arr_len == 1)
 		if (curr[0][0] != '#')
 			if (!ft_strchr(curr[0], '-'))
-				return (error_msg("ERROR---invalid comment"));
+				return (error_msg_free_arr(curr, "ERROR---invalid comment"));
 	if (arr_len == 3)
 		if (!parse_room(curr))
 			return (0);
 	if (arr_len != 1 && arr_len != 3)
-		return (error_msg("ERROR---invlaid format"));
+		return (error_msg_free_arr(curr, "ERROR---invlaid format"));
+	free_2d_array(curr);
 	return (1);
 }
 
