@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/14 09:42:41 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/14 17:12:10 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ int		main()
 {
 	t_game	*game;
 
-	//if (ac != 2)
-	//	return (error_msg("usage: ./lem-in target_file"));
 	game = init_game();
-	if (parse_file(game) == 0)
+	if (!parse_file(game))
+	{
+		while (1)
+			;
 		return (0);
-	//while(1)
-	//	;
+	}
+	print_game(game);
+	while(1)
+		;
 }

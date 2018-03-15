@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:38:35 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/13 23:26:10 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/14 17:15:38 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 int		error_msg(char *msg)
 {
+	ft_putendl_fd(msg, 2);
+	return (0);
+}
+
+int		error_msg_free(char *str, char *msg)
+{
+	free(str);
 	ft_putendl_fd(msg, 2);
 	return (0);
 }

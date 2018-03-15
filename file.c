@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/14 10:03:13 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/14 17:16:46 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **	returns content as char array.
 */
 
-char	*read_stdin()
+char	*read_stdin(void)
 {
 	char	*content;
 	char	buff[BUFF_SIZE + 1];
@@ -58,19 +58,21 @@ int		parse_file(t_game *game)
 	if ((content = read_stdin()) == NULL)
 		return (0);
 	if (is_space_between_lines(content))
-		return (error_msg("ERROR---empty space between lines"));
+		return (error_msg_free(content, "ERROR---empty space between lines"));
 	lines = ft_strsplit(content, '\n');
+	free(content);
+	if (!is_start_end(lines, game))
+		return (error_msg("ERROR---no start or no end rooms."));
 	if ((game->ants = ft_atoi(lines[0])) == 0)
-	{
-		free_2d_array(lines);
-		return (error_msg("ERROR---no ants, or invalid input"));
-	}
+		return (error_msg_free_arr(lines, "ERROR---no ants, or invalid input"));
 	i = 0;
 	while (lines[++i])
-		if (!parse_line(lines[i]))
+		if (!parse_line(lines[i], game))
 			return (free_2d_array(lines));
+	if (game->nb_links == 0 || game->nb_starts == 0
+		|| game->nb_ends == 0 || game->nb_rooms == 0)
+		return (error_msg_free_arr(lines, "ERROR---empty link/room/start/end"));
 	free_2d_array(lines);
-	free(content);
 	return (1);
 }
 
@@ -86,7 +88,7 @@ int		is_space_between_lines(char *content)
 	return (0);
 }
 
-int		parse_line(char *line)
+int		parse_line(char *line, t_game *game)
 {
 	int		i;
 	int		arr_len;
@@ -95,15 +97,23 @@ int		parse_line(char *line)
 	i = -1;
 	curr = ft_strsplit(line, ' ');
 	arr_len = get_array_len(curr);
-	if (arr_len == 1)
-		if (curr[0][0] != '#')
-			if (!ft_strchr(curr[0], '-'))
-				return (error_msg_free_arr(curr, "ERROR---invalid comment"));
-	if (arr_len == 3)
-		if (!parse_room(curr))
-			return (0);
 	if (arr_len != 1 && arr_len != 3)
 		return (error_msg_free_arr(curr, "ERROR---invlaid format"));
+	if (arr_len == 1)
+	{
+		if (curr[0][0] != '#')
+		{
+			if (!ft_strchr(curr[0], '-'))
+				return (error_msg_free_arr(curr, "ERROR---invalid comment"));
+			game->nb_links += 1;
+		}
+	}
+	if (arr_len == 3)
+	{
+		if (!parse_room(curr))
+			return (0);
+		game->nb_rooms += 1;
+	}
 	free_2d_array(curr);
 	return (1);
 }
@@ -146,7 +156,7 @@ int		parse_room(char **room_data)
 **	so malloc only needs to run once for the whole array.
 */
 
-void	make_map(char **arr, t_game *game)
+int		is_start_end(char **arr, t_game *game)
 {
 	int		i;
 	int		count;
@@ -161,6 +171,7 @@ void	make_map(char **arr, t_game *game)
 			game->nb_ends += 1;
 		i++;
 	}
+	return (1);
 }
 
 /*
