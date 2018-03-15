@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/14 17:16:46 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/14 23:47:23 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,28 @@ int		parse_file(t_game *game)
 		return (error_msg_free(content, "ERROR---empty space between lines"));
 	lines = ft_strsplit(content, '\n');
 	free(content);
-	if (!is_start_end(lines, game))
-		return (error_msg("ERROR---no start or no end rooms."));
-	if ((game->ants = ft_atoi(lines[0])) == 0)
+	count_start_end(lines, game);
+	if ((game->ants = ft_atoi(lines[0])) == 0 || !is_number(lines[0]))
 		return (error_msg_free_arr(lines, "ERROR---no ants, or invalid input"));
 	i = 0;
 	while (lines[++i])
 		if (!parse_line(lines[i], game))
 			return (free_2d_array(lines));
-	if (game->nb_links == 0 || game->nb_starts == 0
-		|| game->nb_ends == 0 || game->nb_rooms == 0)
+	if (game->nb_links == 0 || game->nb_starts != 1
+		|| game->nb_ends != 1 || game->nb_rooms == 0)
 		return (error_msg_free_arr(lines, "ERROR---empty link/room/start/end"));
-	free_2d_array(lines);
+	game->lines = lines;
+	return (1);
+}
+
+int		is_number(char *str)
+{
+	int i;
+
+	i = -1;
+	while (str[++i])
+		if (!ft_isdigit(str[i]))
+			return (0);
 	return (1);
 }
 
@@ -90,31 +100,30 @@ int		is_space_between_lines(char *content)
 
 int		parse_line(char *line, t_game *game)
 {
-	int		i;
 	int		arr_len;
 	char	**curr;
 
-	i = -1;
 	curr = ft_strsplit(line, ' ');
 	arr_len = get_array_len(curr);
 	if (arr_len != 1 && arr_len != 3)
 		return (error_msg_free_arr(curr, "ERROR---invlaid format"));
 	if (arr_len == 1)
-	{
-		if (curr[0][0] != '#')
-		{
-			if (!ft_strchr(curr[0], '-'))
-				return (error_msg_free_arr(curr, "ERROR---invalid comment"));
-			game->nb_links += 1;
-		}
-	}
-	if (arr_len == 3)
-	{
-		if (!parse_room(curr))
+		if (!parse_link_comment(curr, game))
 			return (0);
-		game->nb_rooms += 1;
-	}
+	if (arr_len == 3)
+		if (!parse_room(curr, game))
+			return (0);
 	free_2d_array(curr);
+	return (1);
+}
+
+int		parse_link_comment(char **arr, t_game *game)
+{
+	if (arr[0][0] == '#')
+		return (1);
+	if (!ft_strchr(arr[0], '-'))
+		return (error_msg_free_arr(arr, "ERROR---invalid comment"));
+	game->nb_links += 1;
 	return (1);
 }
 
@@ -123,31 +132,23 @@ int		parse_line(char *line, t_game *game)
 **	return 0 if invalid
 */
 
-int		parse_room(char **room_data)
+int		parse_room(char **room_data, t_game *game)
 {
 	int i;
 	int j;
 
-	i = 1;
-	j = 0;
+	i = 0;
+	j = -1;
 	if (room_data[0][0] == 'L')
 	{
 		free_2d_array(room_data);
 		return (error_msg("ERROR---'L' as room name"));
 	}
-	while (room_data[i])
-	{
-		while (room_data[i][j])
-		{
+	while (room_data[++i])
+		while (room_data[i][++j])
 			if (!ft_isdigit(room_data[i][j]))
-			{
-				free_2d_array(room_data);
-				return (error_msg("ERROR---cordinates not a number"));
-			}
-			j++;
-		}
-		i++;
-	}
+				return (error_msg_free_arr(room_data, "ERROR---invalid x y"));
+	game->nb_rooms += 1;
 	return (1);
 }
 
@@ -156,7 +157,7 @@ int		parse_room(char **room_data)
 **	so malloc only needs to run once for the whole array.
 */
 
-int		is_start_end(char **arr, t_game *game)
+void	count_start_end(char **arr, t_game *game)
 {
 	int		i;
 	int		count;
@@ -171,7 +172,6 @@ int		is_start_end(char **arr, t_game *game)
 			game->nb_ends += 1;
 		i++;
 	}
-	return (1);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 19:50:18 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/14 17:14:49 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/14 23:47:29 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ t_game	*init_game()
 	game->nb_starts = 0;
 	game->nb_ends = 0;
 	game->nb_rooms = 0;
+	game->nb_made_rooms = 0;
 	game->nb_links = 0;
-	game->starts = NULL;
-	game->ends = NULL;
+	game->start = NULL;
+	game->end = NULL;
 	game->rooms = NULL;
 	return (game);
 }

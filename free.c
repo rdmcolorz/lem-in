@@ -6,16 +6,17 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:04:38 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/13 22:50:35 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/14 23:04:06 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
+/*
 void	free_game(t_game *game)
 {
-	ft_lstfree(&(game->starts));
-	ft_lstfree(&(game->ends));
+	ft_lstfree(&(game->start));
+	ft_lstfree(&(game->end));
 	free(game);
 }
 
@@ -25,7 +26,7 @@ void	free_room(t_room *room)
 	free(room->name);
 	free(room);
 }
-
+*/
 int		free_2d_array(char **arr)
 {
 	int i;
