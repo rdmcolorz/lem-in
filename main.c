@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/14 23:47:21 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/15 20:57:55 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,14 @@ int		main()
 	//		;
 		return (0);
 	}
-	create_map(game);
+	if (!create_rooms(game))
+	{
+	//	while (1)
+	//		;
+		return (0);
+	}
 	print_game(game);
+	//free_game(game); TO DO
 	//while(1)
 	//	;
 }

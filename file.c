@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/14 23:47:23 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/15 22:17:04 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,29 +183,6 @@ void	count_start_end(char **arr, t_game *game)
 **	gets room values into room struct, such as name, x cord, y cord,
 **	return 0 if invalid.
 */
-
-t_room	*get_room(char *str, int flag)
-{
-	int		i;
-	char	**room_arr;
-	t_room	*room;
-
-	room_arr = ft_strsplit(str, ' ');
-	i = -1;
-	if (get_array_len(room_arr) != 3)
-		return (0);
-	if (room_arr[0][0] == 'L' || room_arr[0][0] == '#')
-		return (0);
-	while (room_arr[1][++i])
-		if (!ft_isdigit(room_arr[1][i]))
-			return (0);
-	i = -1;
-	while (room_arr[2][++i])
-		if (!ft_isdigit(room_arr[2][i]))
-			return (0);
-	room = init_new_room(room_arr, flag);
-	return (room);
-}
 
 int		get_array_len(char **arr)
 {

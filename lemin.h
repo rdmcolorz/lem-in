@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/14 23:47:19 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/15 22:16:38 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@
 #include <stdio.h>
 #include "libft.h"
 
-typedef struct	s_room
+typedef struct		s_room
 {
-	int			x;
-	int			y;
-	int			is_start;
-	int			is_end;
-	char		*name;
-	t_list		*links;
-}				t_room;
+	int				x;
+	int				y;
+	int				is_start;
+	int				is_end;
+	int				nb_links;
+	char			*name;
+	struct s_room	*links;
+}					t_room;
 
 typedef struct	s_game
 {
@@ -37,6 +38,7 @@ typedef struct	s_game
 	int			nb_rooms;
 	int			nb_made_rooms;
 	int			nb_links;
+	char		**all_links;
 	char		**lines;
 	t_room		*start;
 	t_room		*end;
@@ -72,14 +74,16 @@ void			*error_msg_void(char *msg);
 */
 
 t_game			*init_game();
-t_room			*init_new_room(char **arr, int flag);
+t_room			*init_room(char **arr, t_game *game, int flag);
 
 
 /*
 **	create.c
 */
 
-void			create_map(t_game *game);
+int				create_rooms(t_game *game);
+int				create_links(char **line, t_game *game);
+int				duplicate_rooms(t_game *game);
 
 /*
 **	free.c
