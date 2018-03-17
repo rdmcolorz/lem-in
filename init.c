@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 19:50:18 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/15 22:15:39 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/16 21:58:28 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,19 @@ t_room	*init_room(char **arr, t_game *game, int flag)
 	if (room->is_end)
 		game->end = room;
 	return (room);
+}
+
+void	init_all_room_links(t_game *game)
+{
+	int		i;
+
+	i = -1;
+	while (++i < game->nb_rooms)
+	{
+		if (game->rooms[i].nb_links != 0)
+		{
+			game->rooms[i].links = ft_memalloc(sizeof(t_room*) *
+											game->rooms[i].nb_links);
+		}
+	}
 }

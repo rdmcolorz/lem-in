@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/15 22:16:38 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/16 21:25:28 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct		s_room
 	int				is_end;
 	int				nb_links;
 	char			*name;
-	struct s_room	*links;
+	struct s_room	**links;
 }					t_room;
 
 typedef struct	s_game
@@ -75,6 +75,7 @@ void			*error_msg_void(char *msg);
 
 t_game			*init_game();
 t_room			*init_room(char **arr, t_game *game, int flag);
+void			init_all_room_links(t_game *game);
 
 
 /*
@@ -82,8 +83,10 @@ t_room			*init_room(char **arr, t_game *game, int flag);
 */
 
 int				create_rooms(t_game *game);
-int				create_links(char **line, t_game *game);
+int				count_links(char **line, t_game *game);
 int				duplicate_rooms(t_game *game);
+int				duplicate_links(t_game *game);
+void				put_links(t_game *game);
 
 /*
 **	free.c
