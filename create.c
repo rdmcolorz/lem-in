@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 21:34:56 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/16 23:36:50 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/16 23:52:27 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int		create_rooms(t_game *game)
 	}
 	init_all_room_links(game);
 	put_links(game);
-	if (!duplicate_rooms(game) || !duplicate_links(game))
-		return (error_msg_free_arr(curr, "ERROR---duplicate rooms/links"));
+	//if (!duplicate_rooms(game) || !duplicate_links(game))
+	//	return (error_msg_free_arr(curr, "ERROR---duplicate rooms/links"));
 	return (1);
 }
 
