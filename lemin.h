@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/16 21:25:28 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/17 23:13:00 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct	s_game
 	int			nb_rooms;
 	int			nb_made_rooms;
 	int			nb_links;
+	int			nb_made_l;
+	int			flag;
 	char		**all_links;
 	char		**lines;
 	t_room		*start;
@@ -74,7 +76,7 @@ void			*error_msg_void(char *msg);
 */
 
 t_game			*init_game();
-t_room			*init_room(char **arr, t_game *game, int flag);
+t_room			*init_room(char **arr, t_game *game);
 void			init_all_room_links(t_game *game);
 
 
@@ -87,6 +89,9 @@ int				count_links(char **line, t_game *game);
 int				duplicate_rooms(t_game *game);
 int				duplicate_links(t_game *game);
 void				put_links(t_game *game);
+int					get_flag(char **curr, t_game *game);
+int					check_exist(char **link, t_game *game, int i, int count);
+void				link_room(char *str, t_game *game, int room_i);
 
 /*
 **	free.c

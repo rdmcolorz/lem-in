@@ -6,7 +6,7 @@
 #    By: tyang <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/13 16:07:38 by tyang             #+#    #+#              #
-#    Updated: 2018/03/14 23:08:57 by tyang            ###   ########.fr        #
+#    Updated: 2018/03/17 23:19:17 by tyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SOURCE = main.c \
 			debug.c \
 			free.c \
 			create.c \
+			links.c \
+			utilities.c \
 	
 OBJ = $(SOURCE:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/15 22:17:04 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/17 23:19:24 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,29 +75,6 @@ int		parse_file(t_game *game)
 	return (1);
 }
 
-int		is_number(char *str)
-{
-	int i;
-
-	i = -1;
-	while (str[++i])
-		if (!ft_isdigit(str[i]))
-			return (0);
-	return (1);
-}
-
-int		is_space_between_lines(char *content)
-{
-	int	i;
-
-	i = -1;
-	while (content[++i])
-		if (content[i] == '\n')
-			if (content[i + 1] == '\n')
-				return (1);
-	return (0);
-}
-
 int		parse_line(char *line, t_game *game)
 {
 	int		arr_len;
@@ -150,46 +127,4 @@ int		parse_room(char **room_data, t_game *game)
 				return (error_msg_free_arr(room_data, "ERROR---invalid x y"));
 	game->nb_rooms += 1;
 	return (1);
-}
-
-/*
-**	counts the number of start rooms and end rooms
-**	so malloc only needs to run once for the whole array.
-*/
-
-void	count_start_end(char **arr, t_game *game)
-{
-	int		i;
-	int		count;
-
-	i = 0;
-	count = 0;
-	while (arr[i])
-	{
-		if (!ft_strcmp(arr[i], "##start"))
-			game->nb_starts += 1;
-		else if (!ft_strcmp(arr[i], "##end"))
-			game->nb_ends += 1;
-		i++;
-	}
-}
-
-/*
-	game->start = (char**)ft_memalloc(sizeof(char*) * game->nb_starts);
-	game->end = (char**)ft_memalloc(sizeof(char*) * game->nb_starts);
-*/
-
-/*
-**	gets room values into room struct, such as name, x cord, y cord,
-**	return 0 if invalid.
-*/
-
-int		get_array_len(char **arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
 }
