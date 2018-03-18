@@ -6,7 +6,7 @@
 #    By: tyang <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/13 16:07:38 by tyang             #+#    #+#              #
-#    Updated: 2018/03/17 23:47:54 by tyang            ###   ########.fr        #
+#    Updated: 2018/03/18 14:23:46 by tyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SOURCE = main.c \
 			create.c \
 			links.c \
 			utilities.c \
+			ft_list_queue.c \
 	
 OBJ = $(SOURCE:.c=.o)
 
