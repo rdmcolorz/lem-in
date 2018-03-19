@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/17 23:22:27 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/18 20:28:11 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/18 21:59:18 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**bfs(t_game *game)
 			if (q->head->room->links[i]->is_end == 1)
 				return (get_shortest_path(q->head->room->links[i]));
 		}
-		print_queue(q);
+		//print_queue(q);
 		pop_queue(q);
 	}
 	return (error_msg_void("no path to end"));

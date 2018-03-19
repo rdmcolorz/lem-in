@@ -6,7 +6,7 @@
 #    By: tyang <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/13 16:07:38 by tyang             #+#    #+#              #
-#    Updated: 2018/03/18 18:40:40 by tyang            ###   ########.fr        #
+#    Updated: 2018/03/18 22:34:25 by tyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SOURCE = main.c \
 			utilities.c \
 			ft_list_queue.c \
 			bfs.c \
+			print_path.c \
 	
 OBJ = $(SOURCE:.c=.o)
 
