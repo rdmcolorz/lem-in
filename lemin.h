@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/18 14:36:11 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/18 20:15:37 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct		s_room
 	int				visited;
 	char			*name;
 	struct s_room	**links;
+	struct s_room	*prev_room;
 }					t_room;
 
 typedef struct		s_game
@@ -43,8 +44,6 @@ typedef struct		s_game
 	int				flag;
 	char			**all_links;
 	char			**lines;
-	t_room			*start;
-	t_room			*end;
 	t_room			*rooms;
 }					t_game;
 
@@ -123,6 +122,14 @@ t_node				*new_node(t_room *room);
 t_queue				*init_queue(void);
 void				push_queue(t_queue *queue, t_room *room);
 t_node				*pop_queue(t_queue *queue);
+
+/*
+**	bfs.c
+*/
+
+char				**bfs(t_game *game);
+t_room				*find_start_room(t_game *game);
+char				**get_shortest_path(t_room *room);
 
 /*
 **	debug.c
