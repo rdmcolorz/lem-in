@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/18 22:34:11 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/19 23:02:46 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		main(void)
 {
 	t_game	*game;
-	char	**route;
+	t_path	*paths;
 	int		i;
 
 	i = -1;
@@ -32,10 +32,15 @@ int		main(void)
 	//		;
 		return (0);
 	}
-	route = bfs(game);
-	while (route[++i])
-		printf("%s\n", route[i]);
-	print_path(route, game);
+	if ((paths = multi_bfs(game)) == NULL)
+	{
+	//	while (1)
+	//		;
+		return (0);
+	}
+	//print_graph(game);
+	//ft_putchar('\n');
+	print_list(&paths);
 	//printf("GAME DATA--------\n");
 	//print_game(game);
 	//free_game(game); TO DO

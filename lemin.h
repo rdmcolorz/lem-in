@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/18 22:33:38 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/19 22:51:23 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_room
 	int				is_end;
 	int				nb_links;
 	int				visited;
+	int				blocked;
 	char			*name;
 	struct s_room	**links;
 	struct s_room	*prev_room;
@@ -46,6 +47,12 @@ typedef struct		s_game
 	char			**lines;
 	t_room			*rooms;
 }					t_game;
+
+typedef struct		s_path
+{
+	char			**path;
+	struct s_path	*next;
+}					t_path;
 
 typedef struct		s_node
 {
@@ -128,14 +135,20 @@ t_node				*pop_queue(t_queue *queue);
 */
 
 char				**bfs(t_game *game);
+char				**get_shortest_path(t_room *room, t_game *game);
 t_room				*find_start_room(t_game *game);
-char				**get_shortest_path(t_room *room);
+t_room				*find_end_room(t_game *game);
+t_path				*init_path(void);
+t_path				*multi_bfs(t_game *game);
+t_path				*add_path(char **path, t_path *head);
+void				restart_map(t_game *game);
 
 /*
 **	print_path.c
 */
 
-void				print_path(char **route, t_game *game);
+void				print_path(t_path *paths, t_game *game);
+void				print_graph(t_game *game);
 
 /*
 **	debug.c
@@ -143,4 +156,5 @@ void				print_path(char **route, t_game *game);
 
 int					print_game(t_game *game);
 void				print_queue(t_queue *q);
+void				print_list(t_path **paths);
 #endif

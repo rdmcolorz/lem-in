@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 19:50:18 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/18 20:02:19 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/19 23:05:51 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_room	*init_room(char **arr, t_game *game)
 	room->links = NULL;
 	room->prev_room = NULL;
 	room->visited = 0;
+	room->blocked = 0;
 	game->nb_made_rooms += 1;
 	game->flag = 0;
 	return (room);
