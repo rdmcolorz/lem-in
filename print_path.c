@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 22:10:34 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/19 23:52:27 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/20 10:26:53 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ void	print_path(t_path *paths, t_game *game)
 {
 	int		i;
 	int		j;
-	int		steps;
+	int		steps_len;
 
 	i = 0;
 	while (paths != NULL)
 	{
-		steps = get_array_len(paths->path);
+		steps_len = get_struct_arr_len(paths->steps);
 		while (++i <= game->ants)
 		{
 			j = -1;
-			while (++j < steps)
+			while (++j < steps_len)
 			{
 				ft_putchar('L');
 				ft_putnbr(i);
 				ft_putchar('-');
-				ft_putstr(paths->path[j]);
+				ft_putstr(paths->steps[j]->name);
 				ft_putchar('\n');
 			}
 		}
@@ -48,14 +48,13 @@ void	print_list(t_path **paths)
 	while (curr != NULL)
 	{
 		i = -1;
-		steps = get_array_len(curr->path);
+		steps = get_struct_arr_len(curr->steps);
 		ft_putendl("---start print---");
 		while (++i < steps)
-			ft_putendl(curr->path[i]);
+			ft_putendl(curr->steps[i]->name);
 		curr = curr->next;
 	}
 }		
-
 
 void	print_graph(t_game *game)
 {

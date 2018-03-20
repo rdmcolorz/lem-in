@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/19 21:54:00 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/20 10:17:50 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,16 @@ int		get_array_len(char **arr)
 
 	i = 0;
 	while (arr[i])
+		i++;
+	return (i);
+}
+
+int		get_struct_arr_len(t_room **steps)
+{
+	int i;
+
+	i = 0;
+	while (steps[i])
 		i++;
 	return (i);
 }

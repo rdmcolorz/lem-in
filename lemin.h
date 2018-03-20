@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/19 22:51:23 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/20 10:26:32 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct		s_game
 
 typedef struct		s_path
 {
-	char			**path;
+	t_room			**steps;
 	struct s_path	*next;
 }					t_path;
 
@@ -111,6 +111,7 @@ void				put_links(t_game *game);
 int					get_flag(char **curr, t_game *game);
 int					check_exist(char **link, t_game *game, int i, int count);
 void				link_room(char *str, t_game *game, int room_i);
+int					get_struct_arr_len(t_room **steps);
 
 /*
 **	free.c
@@ -134,13 +135,13 @@ t_node				*pop_queue(t_queue *queue);
 **	bfs.c
 */
 
-char				**bfs(t_game *game);
-char				**get_shortest_path(t_room *room, t_game *game);
+t_room				**bfs(t_game *game);
+t_room				**get_shortest_path(t_room *room, t_game *game);
 t_room				*find_start_room(t_game *game);
 t_room				*find_end_room(t_game *game);
 t_path				*init_path(void);
 t_path				*multi_bfs(t_game *game);
-t_path				*add_path(char **path, t_path *head);
+t_path				*add_path(t_room **path, t_path *head);
 void				restart_map(t_game *game);
 
 /*
