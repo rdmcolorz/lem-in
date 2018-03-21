@@ -6,48 +6,48 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/20 23:35:59 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/20 23:36:52 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-/*
-**	gets room values into room struct, such as name, x cord, y cord,
-**	return 0 if invalid.
-*/
-
-int		get_array_len(char **arr)
+int		is_number(char *str)
 {
 	int i;
 
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
+	i = -1;
+	while (str[++i])
+		if (!ft_isdigit(str[i]))
+			return (0);
+	return (1);
 }
 
-int		get_struct_arr_len(t_room **steps)
+int		is_space_between_lines(char *content)
 {
-	int i;
+	int	i;
 
-	i = 0;
-	while (steps[i])
-		i++;
-	return (i);
+	i = -1;
+	while (content[++i])
+		if (content[i] == '\n')
+			if (content[i + 1] == '\n')
+				return (1);
+	return (0);
 }
 
-int		get_list_len(t_path *path)
+void	count_start_end(char **arr, t_game *game)
 {
-	t_path	*curr;
 	int		i;
+	int		count;
 
 	i = 0;
-	curr = path;
-	while (curr != NULL)
+	count = 0;
+	while (arr[i])
 	{
+		if (!ft_strcmp(arr[i], "##start"))
+			game->nb_starts += 1;
+		else if (!ft_strcmp(arr[i], "##end"))
+			game->nb_ends += 1;
 		i++;
-		curr = curr->next;
 	}
-	return (i);
 }

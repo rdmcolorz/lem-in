@@ -6,61 +6,124 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 22:10:34 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/20 10:26:53 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/20 23:40:30 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	print_path(t_path *paths, t_game *game)
+int		assign_ants(t_path *paths, t_game *game)
 {
 	int		i;
-	int		j;
-	int		steps_len;
+	int		all_steps;
+	int		average_path_steps;
+	int		leftovers;
+	t_path	*curr;
 
 	i = 0;
-	while (paths != NULL)
+	curr = paths;
+	all_steps = game->ants;
+	while (curr != NULL)
 	{
-		steps_len = get_struct_arr_len(paths->steps);
-		while (++i <= game->ants)
+		all_steps += curr->len;
+		curr = curr->next;
+	}
+	average_path_steps = all_steps / get_list_len(paths);
+	leftovers = all_steps % get_list_len(paths);
+	curr = paths;
+	while (curr != NULL)
+	{
+		curr->assign_ants = average_path_steps - curr->len;
+		if (curr->next == NULL)
+			curr->assign_ants += leftovers;
+		curr = curr->next;
+	}
+	return (average_path_steps + leftovers);
+}
+
+void	print_steps(t_path **paths, int steps)
+{
+	t_ant	*head;
+	t_path	*curr;
+	int		paths_nb;
+	int		ant_nb;
+	int		i;
+
+	ant_nb = 1;
+	paths_nb = get_list_len(*paths);
+	head = NULL;
+	i = -1;
+	while (--steps > 0)
+	{
+		curr = *paths;
+		while (curr != NULL)
 		{
-			j = -1;
-			while (++j < steps_len)
+			if (curr->assign_ants > 0)
 			{
-				ft_putchar('L');
-				ft_putnbr(i);
-				ft_putchar('-');
-				ft_putstr(paths->steps[j]->name);
-				ft_putchar('\n');
+				head = add_ant(ant_nb, curr, head);
+				ant_nb++;
+				curr->assign_ants--;
 			}
+			curr = curr->next;
 		}
-		paths = paths->next;
+		print_curr_list(head);
 	}
 }
 
-void	print_list(t_path **paths)
+t_ant	*add_ant(int nb, t_path *path, t_ant *head)
 {
-	int		steps;
-	t_path	*curr;
-	int		i;
+	t_ant	*new;
+	t_ant	*curr;
 
-	curr = *paths;
+	curr = head;
+	new = (t_ant*)ft_memalloc(sizeof(t_ant));
+	new->nb = nb;
+	new->path = path;
+	new->next = NULL;
+	new->at_end = 0;
+	new->pos = 0;
+	if (curr != NULL)
+	{
+		while (curr->next != NULL)
+			curr = curr->next;
+		curr->next = new;
+	}
+	else
+		head = new;
+	return (head);
+}
+
+void	print_curr_list(t_ant *head)
+{
+	t_ant	*curr;
+	t_ant	*prev;
+
+	curr = head;
+	prev = NULL;
 	while (curr != NULL)
 	{
-		i = -1;
-		steps = get_struct_arr_len(curr->steps);
-		ft_putendl("---start print---");
-		while (++i < steps)
-			ft_putendl(curr->steps[i]->name);
+		if (!curr->at_end)
+		{
+			print_format(curr->nb, curr->path->steps[curr->pos]->name);
+			curr->pos += 1;
+			if (curr->pos == curr->path->len)
+				curr->at_end = 1;
+			if (prev != NULL)
+				if (prev->at_end || curr->next != NULL)
+					ft_putchar(' ');
+			if (prev == NULL)
+				ft_putchar(' ');
+		}
+		prev = curr;
 		curr = curr->next;
 	}
-}		
+	ft_putchar('\n');
+}
 
-void	print_graph(t_game *game)
+void	print_format(int ant, char *name)
 {
-	int i;
-
-	i = -1;
-	while (game->lines[++i])
-		ft_putendl(game->lines[i]);
+	ft_putchar('L');
+	ft_putnbr(ant);
+	ft_putchar('-');
+	ft_putstr(name);
 }

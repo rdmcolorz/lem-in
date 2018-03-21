@@ -1,53 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/20 23:35:59 by tyang            ###   ########.fr       */
+/*   Created: 2017/12/20 20:57:01 by tyang             #+#    #+#             */
+/*   Updated: 2018/03/20 23:35:11 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-/*
-**	gets room values into room struct, such as name, x cord, y cord,
-**	return 0 if invalid.
-*/
-
-int		get_array_len(char **arr)
+void	list_rev(t_path **head)
 {
-	int i;
+	t_path *curr;
+	t_path *prev;
+	t_path *next;
 
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
-
-int		get_struct_arr_len(t_room **steps)
-{
-	int i;
-
-	i = 0;
-	while (steps[i])
-		i++;
-	return (i);
-}
-
-int		get_list_len(t_path *path)
-{
-	t_path	*curr;
-	int		i;
-
-	i = 0;
-	curr = path;
+	prev = NULL;
+	curr = *head;
 	while (curr != NULL)
 	{
-		i++;
-		curr = curr->next;
+		next = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = next;
 	}
-	return (i);
+	*head = prev;
 }

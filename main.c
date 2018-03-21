@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/20 10:53:09 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/20 23:42:34 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		main(void)
 	t_game	*game;
 	t_path	*paths;
 	int		i;
+	int		steps;
 
 	i = -1;
 	game = init_game();
@@ -38,13 +39,11 @@ int		main(void)
 	//		;
 		return (0);
 	}
-	//print_graph(game);
-	//ft_putchar('\n');
-	//print_list(&paths);
-	//printf("GAME DATA--------\n");
-	//print_game(game);
-	print_path(paths, game);
+	print_graph(game);
+	ft_putchar('\n');
+	steps = assign_ants(paths, game);
+	print_steps(&paths, steps);
 	//free_game(game); TO DO
-	//while(1)
-	//	;
+	while(1)
+		;
 }

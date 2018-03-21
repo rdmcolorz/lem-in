@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/20 10:26:32 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/20 22:54:46 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct		s_room
 	int				visited;
 	int				blocked;
 	char			*name;
+	char			*ant_name;
 	struct s_room	**links;
 	struct s_room	*prev_room;
 }					t_room;
@@ -51,6 +52,8 @@ typedef struct		s_game
 typedef struct		s_path
 {
 	t_room			**steps;
+	int				len;
+	int				assign_ants;
 	struct s_path	*next;
 }					t_path;
 
@@ -65,6 +68,15 @@ typedef struct		s_queue
 	t_node			*head;
 	t_node			*tail;
 }					t_queue;
+
+typedef struct		s_ant
+{
+	t_path			*path;
+	int				pos;
+	int				nb;
+	int				at_end;
+	struct s_ant	*next;
+}					t_ant;
 
 /*
 **	file.c
@@ -148,9 +160,21 @@ void				restart_map(t_game *game);
 **	print_path.c
 */
 
-void				print_path(t_path *paths, t_game *game);
+int					assign_ants(t_path *paths, t_game *game);
 void				print_graph(t_game *game);
+t_ant				*add_ant(int nb, t_path *path, t_ant *head);
+void				print_curr_list(t_ant *head);
+int					check_ants_ended(t_ant *head);
+void				print_steps(t_path **path, int steps);
+void				print_format(int ant, char *name);
 
+
+/*
+**	utilities.c
+*/
+
+int					get_list_len(t_path *path);
+void				list_rev(t_path **head);
 /*
 **	debug.c
 */

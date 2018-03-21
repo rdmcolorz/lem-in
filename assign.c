@@ -1,53 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   print_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/20 23:35:59 by tyang            ###   ########.fr       */
+/*   Created: 2018/03/18 22:10:34 by tyang             #+#    #+#             */
+/*   Updated: 2018/03/20 23:39:42 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-/*
-**	gets room values into room struct, such as name, x cord, y cord,
-**	return 0 if invalid.
-*/
-
-int		get_array_len(char **arr)
+int		check_ants_ended(t_ant *head)
 {
-	int i;
+	t_ant	*curr;
 
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
+	curr = head;
+	while (curr != NULL)
+	{
+		if (!curr->at_end)
+			return (0);
+		curr = curr->next;
+	}
+	return (1);
 }
 
-int		get_struct_arr_len(t_room **steps)
+void	print_list(t_path **paths)
 {
-	int i;
-
-	i = 0;
-	while (steps[i])
-		i++;
-	return (i);
-}
-
-int		get_list_len(t_path *path)
-{
+	int		steps;
 	t_path	*curr;
 	int		i;
 
-	i = 0;
-	curr = path;
+	curr = *paths;
 	while (curr != NULL)
 	{
-		i++;
+		i = -1;
+		steps = get_struct_arr_len(curr->steps);
+		ft_putendl("---start print---");
+		while (++i < steps)
+			ft_putendl(curr->steps[i]->name);
 		curr = curr->next;
 	}
-	return (i);
+}
+
+void	print_graph(t_game *game)
+{
+	int i;
+
+	i = -1;
+	while (game->lines[++i])
+		ft_putendl(game->lines[i]);
 }

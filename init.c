@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 19:50:18 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/19 23:05:51 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/20 16:35:58 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_room	*init_room(char **arr, t_game *game)
 	room->is_start = (game->flag == 1) ? 1 : 0;
 	room->is_end = (game->flag == 2) ? 1 : 0;
 	room->name = arr[0];
+	room->ant_name = NULL;
 	room->nb_links = 0;
 	room->links = NULL;
 	room->prev_room = NULL;

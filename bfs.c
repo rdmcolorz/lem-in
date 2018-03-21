@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/17 23:22:27 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/20 10:52:37 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/20 22:39:19 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_path	*multi_bfs(t_game *game)
 		paths = add_path(shortest, paths);
 		nb_paths--;
 	}
+	list_rev(&paths);
 	return (paths);
 }
 
@@ -77,6 +78,8 @@ t_path	*add_path(t_room **steps, t_path *head)
 	
 	new = ft_memalloc(sizeof(t_path));
 	new->steps = steps;
+	new->len = get_struct_arr_len(steps);
+	new->assign_ants = 0;
 	new->next = NULL;
 	if (head != NULL)
 		new->next = head;
