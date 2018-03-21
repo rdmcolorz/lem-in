@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/20 22:54:46 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/20 23:55:46 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct		s_game
 	int				nb_links;
 	int				nb_made_l;
 	int				flag;
-	char			**all_links;
 	char			**lines;
 	t_room			*rooms;
 }					t_game;

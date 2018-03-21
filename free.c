@@ -6,28 +6,31 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:04:38 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/16 17:04:53 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/20 23:55:03 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-/*
+
 void	free_game(t_game *game)
 {
-	ft_lstfree(&(game->start));
-	ft_lstfree(&(game->end));
+	int i;
+	int j;
+
+	i = -1;
+		ft_putendl("herrr");
+	free_2d_array(game->lines);
+	while (++i < game->nb_rooms)
+	{
+		free(game->rooms[i].name);
+		free(game->rooms[i].ant_name);
+		j = -1;
+		while (++j < game->rooms[i].nb_links)
+			free(game->rooms[i].links[j]);
+	}
 	free(game);
 }
-*/
-/*
-void	free_room(t_room *room)
-{
-	ft_lstfree(&(room->links));
-	free(room->name);
-	free(room);
-}
-*/
 
 int		free_2d_array(char **arr)
 {
