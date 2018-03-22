@@ -6,7 +6,7 @@
 #    By: tyang <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/13 16:07:38 by tyang             #+#    #+#              #
-#    Updated: 2018/03/22 03:18:09 by tyang            ###   ########.fr        #
+#    Updated: 2018/03/22 10:07:42 by tyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SOURCE = main.c \
 			free.c \
 			create.c \
 			links.c \
-			utilities.c \
+			utilities.c 
 			utilities2.c \
 			ft_list_queue.c \
 			list_rev.c \
