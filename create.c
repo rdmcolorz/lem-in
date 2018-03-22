@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 21:34:56 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/22 03:17:33 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/22 10:19:14 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		get_flag(char **curr, t_game *game)
 		game->flag = 1;
 	if (!ft_strcmp(curr[0], "##end"))
 		game->flag = 2;
-	free_2d_array(curr);
+	//free_2d_array(curr);
 	return (1);
 }
 
