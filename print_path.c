@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 22:10:34 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/20 23:40:30 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/21 18:26:35 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,10 @@ void	print_steps(t_path **paths, int steps)
 {
 	t_ant	*head;
 	t_path	*curr;
-	int		paths_nb;
 	int		ant_nb;
-	int		i;
 
 	ant_nb = 1;
-	paths_nb = get_list_len(*paths);
 	head = NULL;
-	i = -1;
 	while (--steps > 0)
 	{
 		curr = *paths;
@@ -68,6 +64,7 @@ void	print_steps(t_path **paths, int steps)
 		}
 		print_curr_list(head);
 	}
+	free_ants_list(head);
 }
 
 t_ant	*add_ant(int nb, t_path *path, t_ant *head)

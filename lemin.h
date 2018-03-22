@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/20 23:55:46 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/21 21:00:30 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void				*error_msg_void(char *msg);
 */
 
 t_game				*init_game();
-t_room				*init_room(char **arr, t_game *game);
+t_room				init_room(char **arr, t_game *game);
 void				init_all_room_links(t_game *game);
 
 
@@ -132,6 +132,9 @@ void				free_game(t_game *game);
 void				free_room(t_room *room);
 int					free_2d_array(char **arr);
 int					free_2_2d_array(char **arr, char **arr2);
+void				free_ants_list(t_ant *head);
+void				free_queue(t_queue *q);
+void				free_rooms(t_game **game);
 
 /*
 **	ft_list_queue.c
@@ -166,7 +169,8 @@ void				print_curr_list(t_ant *head);
 int					check_ants_ended(t_ant *head);
 void				print_steps(t_path **path, int steps);
 void				print_format(int ant, char *name);
-
+void				block_room(t_room **route, t_room *room,
+												t_game *game, int count);
 
 /*
 **	utilities.c

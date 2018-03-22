@@ -6,11 +6,16 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 21:34:56 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/17 23:15:47 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/21 21:08:30 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+**	counts the number of links in the map, and checkes if the link
+**	links to itself, and if the link refers to a room in the map.
+*/
 
 int		count_links(char **line, t_game *game)
 {
@@ -22,7 +27,10 @@ int		count_links(char **line, t_game *game)
 	count = 0;
 	link = ft_strsplit(line[0], '-');
 	if (!ft_strcmp(link[0], link[1]))
-		return (error_msg_free_arr(link, "ERROR---room links to self"));
+	{
+		free_2d_array(link);
+		return (error_msg("ERROR---room links to self"));
+	}
 	while (++i < game->nb_rooms)
 		count = check_exist(link, game, i, count);
 	free_2d_array(link);
@@ -30,6 +38,10 @@ int		count_links(char **line, t_game *game)
 		return (error_msg("ERROR---none existing room in link"));
 	return (1);
 }
+
+/*
+**	funtion for count_links that checks if the room exists in the map.
+*/
 
 int		check_exist(char **link, t_game *game, int i, int count)
 {
@@ -46,6 +58,10 @@ int		check_exist(char **link, t_game *game, int i, int count)
 	}
 	return (count);
 }
+
+/*
+**	function for create_rooms, goes to each room and assigns the link to it.
+*/
 
 void	put_links(t_game *game)
 {
@@ -83,6 +99,7 @@ void	link_room(char *str, t_game *game, int room_i)
 			if (!ft_strcmp(game->rooms[j].name, link[0]))
 				game->rooms[room_i].links[++game->nb_made_l] = &game->rooms[j];
 	}
+	free_2d_array(link);
 }
 
 int		duplicate_links(t_game *game)

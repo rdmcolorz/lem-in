@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 19:50:18 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/20 16:35:58 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/21 21:47:14 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,22 @@ t_game	*init_game(void)
 	return (game);
 }
 
-t_room	*init_room(char **arr, t_game *game)
+t_room	init_room(char **arr, t_game *game)
 {
-	t_room	*room;
+	t_room	room;
 
-	room = (t_room*)ft_memalloc(sizeof(t_room));
-	room->x = ft_atoi(arr[1]);
-	room->y = ft_atoi(arr[2]);
-	room->is_start = (game->flag == 1) ? 1 : 0;
-	room->is_end = (game->flag == 2) ? 1 : 0;
-	room->name = arr[0];
-	room->ant_name = NULL;
-	room->nb_links = 0;
-	room->links = NULL;
-	room->prev_room = NULL;
-	room->visited = 0;
-	room->blocked = 0;
+	room.x = ft_atoi(arr[1]);
+	room.y = ft_atoi(arr[2]);
+	room.is_start = (game->flag == 1) ? 1 : 0;
+	room.is_end = (game->flag == 2) ? 1 : 0;
+	room.name = ft_strdup(arr[0]);
+	free_2d_array(arr);
+	room.ant_name = NULL;
+	room.nb_links = 0;
+	room.links = NULL;
+	room.prev_room = NULL;
+	room.visited = 0;
+	room.blocked = 0;
 	game->nb_made_rooms += 1;
 	game->flag = 0;
 	return (room);

@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/17 23:22:27 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/20 22:39:19 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/21 21:54:44 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ t_room	**bfs(t_game *game)
 {
 	t_queue	*q;
 	int		i;
-	t_room	*start;
 
 	q = init_queue();
-	start = find_start_room(game);
-	push_queue(q, start);
+	push_queue(q, find_start_room(game));
 	while (q->head != NULL)
 	{
 		i = -1;
@@ -34,10 +32,14 @@ t_room	**bfs(t_game *game)
 				q->head->room->links[i]->prev_room = q->head->room;
 			}
 			if (q->head->room->links[i]->is_end == 1)
+			{
+				free_queue(q);
 				return (get_shortest_path(q->head->room->links[i], game));
+			}
 		}
 		pop_queue(q);
 	}
+	free_queue(q);
 	return (NULL);
 }
 
@@ -55,69 +57,22 @@ t_path	*multi_bfs(t_game *game)
 	if (start->nb_links < end->nb_links)
 		nb_paths = start->nb_links;
 	else
-		nb_paths = end->nb_links;
-	while (nb_paths > 0)
+		nb_paths = end->nb_links + 1;
+	while (--nb_paths > 0)
 	{
 		restart_map(game);
 		if ((shortest = bfs(game)) == NULL)
 		{
 			if (paths == NULL)
+			{
+				free(paths);
 				return (error_msg_void("ERROR---no path to end"));
+			}
 			return (paths);
 		}
 		paths = add_path(shortest, paths);
-		nb_paths--;
 	}
-	list_rev(&paths);
 	return (paths);
-}
-
-t_path	*add_path(t_room **steps, t_path *head)
-{
-	t_path	*new;
-	
-	new = ft_memalloc(sizeof(t_path));
-	new->steps = steps;
-	new->len = get_struct_arr_len(steps);
-	new->assign_ants = 0;
-	new->next = NULL;
-	if (head != NULL)
-		new->next = head;
-	return (new);
-}
-
-t_room	**get_shortest_path(t_room *room, t_game *game)
-{
-	int		count;
-	t_room	**route;
-	t_room	*temp;
-	int		i;
-
-	count = 0;
-	temp = room;
-	while (temp->is_start != 1)
-	{
-		temp = temp->prev_room;
-		count++;
-	}
-	route = (t_room**)ft_memalloc(sizeof(t_room*) * (count + 1));
-	route[count] = 0;
-	while (--count >= 0)
-	{
-		i = -1;
-		while (++i < game->nb_rooms)
-		{
-			if (!ft_strcmp(game->rooms[i].name, room->name))
-			{
-				if (game->rooms[i].is_end != 1)
-					game->rooms[i].blocked = 1;
-				route[count] = &(game->rooms[i]);
-			}
-		}
-		if (room->prev_room != NULL)
-			room = room->prev_room;
-	}
-	return (route);
 }
 
 t_room	*find_start_room(t_game *game)

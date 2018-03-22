@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 21:34:56 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/19 10:27:52 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/21 21:08:05 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,32 @@ int		create_rooms(t_game *game)
 	char	**curr;
 
 	i = 0;
-	game->rooms = ft_memalloc(sizeof(t_room) * game->nb_rooms);
+	game->rooms = (t_room*)ft_memalloc(sizeof(t_room) * (game->nb_rooms));
 	while (game->lines[++i])
 	{
 		curr = ft_strsplit(game->lines[i], ' ');
 		if (get_array_len(curr) == 1)
 		{
 			if (!get_flag(curr, game))
-				return (0);
+				return (error_msg_free_arr(curr, NULL));
 		}
 		else
-			game->rooms[game->nb_made_rooms] = *init_room(curr, game);
+			game->rooms[game->nb_made_rooms] = init_room(curr, game);
 	}
 	init_all_room_links(game);
 	put_links(game);
 	if (!duplicate_rooms(game))
-		return (error_msg_free_arr(curr, "ERROR---duplicate rooms/links"));
+	{
+		free(&game->rooms);
+		return (error_msg("ERROR---duplicate rooms/links"));
+	}
 	return (1);
 }
 
 int		get_flag(char **curr, t_game *game)
 {
 	if (game->flag == 1 || game->flag == 2)
-		return (error_msg_free_arr(curr, "ERROR---invalid room"));
+		return (error_msg("ERROR---invalid room"));
 	if (!ft_strcmp(curr[0], "##start"))
 		game->flag = 1;
 	if (!ft_strcmp(curr[0], "##end"))
@@ -48,6 +51,7 @@ int		get_flag(char **curr, t_game *game)
 	if (curr[0][0] != '#')
 		if (!count_links(curr, game))
 			return (0);
+	free_2d_array(curr);
 	return (1);
 }
 
