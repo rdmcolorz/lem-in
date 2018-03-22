@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 21:34:56 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/21 21:08:05 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/22 01:39:22 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ int		create_rooms(t_game *game)
 	init_all_room_links(game);
 	put_links(game);
 	if (!duplicate_rooms(game))
-	{
-		free(&game->rooms);
 		return (error_msg("ERROR---duplicate rooms/links"));
-	}
 	return (1);
 }
 

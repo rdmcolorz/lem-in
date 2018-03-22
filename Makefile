@@ -6,7 +6,7 @@
 #    By: tyang <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/13 16:07:38 by tyang             #+#    #+#              #
-#    Updated: 2018/03/21 10:32:19 by tyang            ###   ########.fr        #
+#    Updated: 2018/03/22 02:02:46 by tyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ SOURCE = main.c \
 			error_msg.c \
 			file.c \
 			init.c \
-			debug.c \
 			free.c \
 			create.c \
 			links.c \
@@ -36,11 +35,11 @@ OBJ = $(SOURCE:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	@#@echo "Compiling Libft";\
-	@$(MAKE) re -C libft \
-	@$(MAKE) clean -C libft \
-	@echo "Cleaned object files";\
-	@echo "Compiling lem-in"; 
+	@echo "Compiling Libft";
+	@$(MAKE) re -C libft;
+	@$(MAKE) clean -C libft;
+	@echo "Cleaned object files";
+	@echo "Compiling lem-in";
 	@gcc $(FLAGS) $(SOURCE) -Ilibft/includes -L. libft/libft.a -o $(NAME)
 
 clean:
@@ -50,3 +49,8 @@ fclean:
 	@rm -f $(NAME)
 
 re: fclean all
+
+debug:
+	@rm -f $(NAME)
+	@gcc $(FLAGS) -g -fsanitize=address $(SOURCE) -Ilibft/includes \
+	-L. libft/libft.a -o $(NAME)

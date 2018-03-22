@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/21 18:53:07 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/22 02:02:07 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,16 +115,14 @@ int		parse_room(char **room_d, t_game *game)
 	int j;
 
 	i = 0;
-	j = 0;
 	if (room_d[0][0] == 'L')
-	{
-		free_2d_array(room_d);
-		return (error_msg("ERROR---'L' as room name"));
-	}
+		return (error_msg_free_arr(room_d, "ERROR---'L' as room name"));
 	while (room_d[++i])
 	{
-		if (room_d[i][0] == '-' || ft_isdigit(room_d[i][0]))
+		if ((room_d[i][0] == '-' &&
+			ft_strlen(room_d[i]) > 1) || ft_isdigit(room_d[i][0]))
 		{
+			j = 0;
 			while (room_d[i][++j])
 			{
 				if (!ft_isdigit(room_d[i][j]))
