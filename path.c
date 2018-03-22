@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/17 23:22:27 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/22 01:16:39 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/22 02:58:54 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_path	*add_path(t_room **steps, t_path *head)
 	return (new);
 }
 
-t_room	**get_shortest_path(t_room *room, t_game *game)
+t_room	**get_shortest_path(t_queue *q, t_room *room, t_game *game)
 {
 	t_room	**route;
 	t_room	*temp;
@@ -47,6 +47,7 @@ t_room	**get_shortest_path(t_room *room, t_game *game)
 		if (room->prev_room != NULL)
 			room = room->prev_room;
 	}
+	free(q);
 	return (route);
 }
 

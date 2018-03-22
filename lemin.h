@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/22 01:09:05 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/22 03:07:33 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ t_node				*pop_queue(t_queue *queue);
 */
 
 t_room				**bfs(t_game *game);
-t_room				**get_shortest_path(t_room *room, t_game *game);
+t_room				**get_shortest_path(t_queue *q, t_room *room, t_game *game);
 t_room				*find_start_room(t_game *game);
 t_room				*find_end_room(t_game *game);
 t_path				*init_path(void);

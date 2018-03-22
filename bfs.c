@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/17 23:22:27 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/22 00:56:01 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/22 03:01:24 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ t_room	**bfs(t_game *game)
 				q->head->room->links[i]->prev_room = q->head->room;
 			}
 			if (q->head->room->links[i]->is_end == 1)
-				return (get_shortest_path(q->head->room->links[i], game));
+				return (get_shortest_path(q, q->head->room->links[i], game));
 		}
 		pop_queue(q);
 	}
-	free_queue(q);
+	free(q);
 	return (NULL);
 }
 

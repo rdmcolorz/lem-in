@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/22 02:02:07 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/22 02:53:25 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		parse_line(char *line, t_game *game)
 
 	curr = ft_strsplit(line, ' ');
 	arr_len = get_array_len(curr);
-	if (arr_len != 1 && arr_len != 3)
+	if (arr_len != 1 && arr_len != 3 && curr[0][0] != '#')
 		return (error_msg_free_arr(curr, "ERROR---invlaid format"));
 	if (arr_len == 1)
 		if (!parse_link_comment(curr, game))
