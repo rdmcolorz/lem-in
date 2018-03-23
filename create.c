@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 21:34:56 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/22 10:19:14 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/23 11:54:51 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ int		create_rooms(t_game *game)
 	{
 		curr = ft_strsplit(game->lines[i], ' ');
 		if (get_array_len(curr) < 3 || get_array_len(curr) > 3)
+		{
 			if (!get_flag(curr, game))
 				return (error_msg_free_arr(curr, NULL));
+		}
 		if (get_array_len(curr) == 3)
 			game->rooms[game->nb_made_rooms] = init_room(curr, game);
 	}
@@ -51,7 +53,7 @@ int		get_flag(char **curr, t_game *game)
 		game->flag = 1;
 	if (!ft_strcmp(curr[0], "##end"))
 		game->flag = 2;
-	//free_2d_array(curr);
+	free_2d_array(curr);
 	return (1);
 }
 

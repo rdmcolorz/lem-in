@@ -6,7 +6,7 @@
 #    By: tyang <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/13 16:07:38 by tyang             #+#    #+#              #
-#    Updated: 2018/03/22 11:01:34 by tyang            ###   ########.fr        #
+#    Updated: 2018/03/23 11:38:54 by tyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SOURCE = main.c \
 			file.c \
 			init.c \
 			free.c \
+			free2.c \
 			create.c \
 			links.c \
 			utilities.c \
@@ -35,10 +36,10 @@ OBJ = $(SOURCE:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	@echo "Compiling Libft";
-	@$(MAKE) re -C libft;
-	@$(MAKE) clean -C libft;
-	@echo "Cleaned object files";
+	@#echo "Compiling Libft";\
+	@$(MAKE) re -C libft;\
+	@$(MAKE) clean -C libft;\
+	@echo "Cleaned object files";\
 	@echo "Compiling lem-in";
 	@gcc $(FLAGS) $(SOURCE) -Ilibft/includes -L. libft/libft.a -o $(NAME)
 

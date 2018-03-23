@@ -1,45 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/23 11:29:48 by tyang            ###   ########.fr       */
+/*   Created: 2018/03/23 11:36:01 by tyang             #+#    #+#             */
+/*   Updated: 2018/03/23 11:46:42 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		main(void)
+void	free_path(t_path *paths)
 {
-	t_game	*game;
-	t_path	*paths;
-	int		i;
-	int		steps;
+	t_path	*temp;
 
-	i = -1;
-	game = init_game();
-	if (!parse_file(game))
-		return (0);
-	if (!create_rooms(game))
+	while (paths != NULL)
 	{
-		while (1)
-			;
-		return (0);
+		temp = paths;
+		free(paths);
+		paths = paths->next;
 	}
-	if ((paths = multi_bfs(game)) == NULL)
-	{
-		while (1)
-			;
-		return (0);
-	}
-	list_rev(&paths);
-	print_graph(game);
-	ft_putchar('\n');
-	steps = assign_ants(paths, game);
-	print_steps(&paths, steps);
-	while (1)
-		;
 }
