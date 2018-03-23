@@ -6,7 +6,7 @@
 #    By: tyang <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/13 16:07:38 by tyang             #+#    #+#              #
-#    Updated: 2018/03/23 13:33:44 by tyang            ###   ########.fr        #
+#    Updated: 2018/03/23 13:39:38 by tyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ $(NAME):
 	@#echo "Compiling Libft";\
 	@$(MAKE) re -C libft;\
 	@$(MAKE) clean -C libft;\
-	@echo "Cleaned object files";
+	@echo "Cleaned object files"; \
 	@echo "Compiling lem-in";
 	@gcc $(FLAGS) $(SOURCE) -Ilibft/includes -L. libft/libft.a -o $(NAME)
 
