@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/23 18:51:17 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/23 18:59:09 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,12 @@ int		main(void)
 	if (!parse_file(game))
 		return (0);
 	if (!create_rooms(game))
-	{
-		while (1)
-			;
 		return (0);
-	}
 	if ((paths = multi_bfs(game)) == NULL)
-	{
-		while (1)
-			;
 		return (0);
-	}
 	list_rev(&paths);
 	print_graph(game);
 	ft_putchar('\n');
 	steps = assign_ants(paths, game);
 	print_steps(&paths, steps);
-	while (1)
-		;
 }
