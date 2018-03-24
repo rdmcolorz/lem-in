@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:09 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/20 23:36:52 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/23 18:52:37 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,8 @@ int		is_space_between_lines(char *content)
 void	count_start_end(char **arr, t_game *game)
 {
 	int		i;
-	int		count;
 
 	i = 0;
-	count = 0;
 	while (arr[i])
 	{
 		if (!ft_strcmp(arr[i], "##start"))

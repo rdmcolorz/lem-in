@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/23 11:29:48 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/23 18:51:17 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ int		main(void)
 {
 	t_game	*game;
 	t_path	*paths;
-	int		i;
 	int		steps;
 
-	i = -1;
 	game = init_game();
 	if (!parse_file(game))
 		return (0);

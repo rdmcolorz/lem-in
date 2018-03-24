@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 22:10:34 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/23 11:59:18 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/23 18:52:20 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 int		assign_ants(t_path *paths, t_game *game)
 {
-	int		i;
 	int		all_steps;
 	int		average_path_steps;
 	int		leftovers;
 	t_path	*curr;
 
-	i = 0;
 	curr = paths;
 	all_steps = game->ants;
 	while (curr != NULL)
