@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 22:10:34 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/22 01:44:52 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/23 21:22:57 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,8 @@ void	print_graph(t_game *game)
 
 	i = -1;
 	while (game->lines[++i])
+	{
 		ft_putendl(game->lines[i]);
+		free(game->lines[i]);
+	}
 }

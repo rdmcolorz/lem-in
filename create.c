@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 21:34:56 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/23 20:31:47 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/23 21:11:44 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int		create_rooms(t_game *game)
 			game->rooms[game->nb_made_rooms] = init_room(curr, game);
 		free_2d_array(curr);
 	}
-	printf("%i\n", i);
 	init_all_room_links(game);
 	put_links(game);
 	if (!duplicate_rooms(game))

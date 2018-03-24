@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/23 20:50:26 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/23 21:19:44 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,6 @@ int		main(void)
 	ft_putchar('\n');
 	steps = assign_ants(paths, game);
 	print_steps(&paths, steps);
+	while (1)
+		;
 }
