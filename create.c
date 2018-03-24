@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 21:34:56 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/23 19:25:25 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/23 20:17:32 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ int		create_rooms(t_game *game)
 	game->rooms = (t_room*)ft_memalloc(sizeof(t_room) * (game->nb_rooms));
 	while (game->lines[++i])
 	{
-		curr = ft_strsplit(game->lines[i], ' ');
-		if (get_array_len(curr) == 1)
-			if (!get_flag(curr, game))
-				return (0);
-		if (get_array_len(curr) == 3 && curr[0][0] != '#')
-			game->rooms[game->nb_made_rooms] = init_room(curr, game);
+		if ((curr = ft_strsplit(game->lines[i], ' ')) != NULL)
+		{
+			if (get_array_len(curr) == 1)
+				if (!get_flag(curr, game))
+					return (0);
+			if (get_array_len(curr) == 3 && curr[0][0] != '#')
+				game->rooms[game->nb_made_rooms] = init_room(curr, game);
+		}
 	}
 	printf("%i\n", i);
 	init_all_room_links(game);
