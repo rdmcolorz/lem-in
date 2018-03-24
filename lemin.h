@@ -6,18 +6,18 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/23 11:38:44 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/23 21:03:33 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef LEMIN_H
+#ifndef LEMIN_H
 # define LEMIN_H
 # define BUFF_SIZE 4096
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include "libft.h"
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
+# include "libft.h"
 
 typedef struct		s_room
 {
@@ -108,7 +108,6 @@ void				*error_msg_void(char *msg);
 t_game				*init_game();
 t_room				init_room(char **arr, t_game *game);
 void				init_all_room_links(t_game *game);
-
 
 /*
 **	create.c

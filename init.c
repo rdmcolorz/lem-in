@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 19:50:18 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/23 20:28:20 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/23 21:02:03 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_room	init_room(char **arr, t_game *game)
 	room.is_start = (game->flag == 1) ? 1 : 0;
 	room.is_end = (game->flag == 2) ? 1 : 0;
 	room.name = ft_strdup(arr[0]);
-	//free_2d_array(arr);
 	room.ant_name = NULL;
 	room.nb_links = 0;
 	room.links = NULL;
