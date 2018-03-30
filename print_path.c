@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 22:10:34 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/23 21:21:25 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/29 20:27:53 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	print_steps(t_path **paths, int steps)
 		print_curr_list(head);
 	}
 	free_ants_list(head);
-	free_path(*paths);
 }
 
 t_ant	*add_ant(int nb, t_path *path, t_ant *head)
