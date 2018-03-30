@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:36:59 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/29 20:30:51 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/29 22:24:58 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		main(void)
 	if (!create_rooms(game))
 		return (0);
 	if (!(paths = multi_bfs(game)))
-		return (0);
+		return (error_msg("ERROR---no way"));
 	list_rev(&paths);
 	print_graph(game);
 	ft_putchar('\n');

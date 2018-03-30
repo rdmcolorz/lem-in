@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/17 23:22:27 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/29 20:27:29 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/29 22:22:22 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ t_path	*multi_bfs(t_game *game)
 		restart_map(game);
 		if ((shortest = bfs(game)) == NULL)
 		{
-			if (paths == NULL)
-				return (error_msg_void("ERROR---no path to end"));
+			if (!paths)
+				return (0);
 			return (paths);
 		}
 		paths = add_path(shortest, paths);
