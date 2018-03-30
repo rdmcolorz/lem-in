@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 10:04:38 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/23 19:37:22 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/29 15:39:04 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,13 @@ void	free_queue(t_queue *q)
 	free(q);
 }
 
-void	free_rooms(t_game **game)
+void	*free_rooms(t_room **rooms)
 {
 	int		i;
-	t_game	*curr;
 
 	i = -1;
-	curr = *game;
-	while (&(curr->rooms[i]))
-		free(&(curr->rooms[i]));
-	free(curr->rooms);
+	while (rooms[++i])
+		free(rooms[i]);
+	free(rooms);
+	return (NULL);
 }

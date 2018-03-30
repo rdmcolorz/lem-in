@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/17 23:22:27 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/23 21:20:56 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/29 19:57:34 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ t_path	*multi_bfs(t_game *game)
 {
 	t_room	*start;
 	t_room	*end;
-	int		nb_paths;
-	t_path	*paths;
 	t_room	**shortest;
+	t_path	*paths;
+	int		nb_paths;
 
 	paths = NULL;
 	start = find_start_room(game);

@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/23 21:03:33 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/29 19:12:42 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int					free_2d_array(char **arr);
 int					free_2_2d_array(char **arr, char **arr2);
 void				free_ants_list(t_ant *head);
 void				free_queue(t_queue *q);
-void				free_rooms(t_game **game);
+void				*free_rooms(t_room **rooms);
 void				free_path(t_path *paths);
 
 /*
