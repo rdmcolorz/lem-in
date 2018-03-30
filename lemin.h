@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:07:03 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/29 19:12:42 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/29 20:08:08 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void				free_path(t_path *paths);
 t_node				*new_node(t_room *room);
 t_queue				*init_queue(void);
 void				push_queue(t_queue *queue, t_room *room);
-t_node				*pop_queue(t_queue *queue);
+void				pop_queue(t_queue *queue);
 
 /*
 **	bfs.c

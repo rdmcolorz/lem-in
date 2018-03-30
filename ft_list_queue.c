@@ -6,7 +6,7 @@
 /*   By: tyang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 13:27:18 by tyang             #+#    #+#             */
-/*   Updated: 2018/03/22 00:07:46 by tyang            ###   ########.fr       */
+/*   Updated: 2018/03/29 20:08:29 by tyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ void		push_queue(t_queue *queue, t_room *room)
 	queue->tail = new;
 }
 
-t_node		*pop_queue(t_queue *queue)
+void		pop_queue(t_queue *queue)
 {
 	t_node	*temp;
 
 	temp = queue->head;
 	if (queue->head == NULL)
-		return (NULL);
+		return ;
 	queue->head = queue->head->next;
 	if (queue->head == NULL)
 		queue->tail = NULL;
-	return (temp);
+	free(temp);
 }
